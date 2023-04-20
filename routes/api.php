@@ -14,6 +14,9 @@ use App\Models\Producto;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get("/", function () {
+    return response()->json(Producto::all());
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -22,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("productos", function () {
     return response()->json(Producto::all());
 });
+
 
 Route::post("/productos", function(Request $request){
     $producto = new Producto($request->input());
@@ -38,8 +42,22 @@ Route::put("/producto", function(Request $request){
     $producto->saveOrFail();
     return response()->json(true);
 });
-Route::delete("/producto/{id}", function($id){
+Route::delete("/productos/{id}", function($id){
     $producto = Producto::findOrFail($id);
     $producto->delete();
     return response()->json(true);
+});
+
+Route::get("ventas", function () {
+    return response()->json(Venta::all());
+});
+
+Route::post("/ventas", function(Request $request){
+    $venta = new Venta($request->input());
+    $venta->saveOrFail();
+    return response()->json(["data" => "true"]);
+});
+Route::get("/ventas/{id}", function($id){
+    $venta = Venta::findOrFail($id);
+    return response()->json($venta);
 });

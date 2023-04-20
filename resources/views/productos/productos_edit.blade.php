@@ -1,67 +1,64 @@
-{{--
 
-  ____          _____               _ _           _
- |  _ \        |  __ \             (_) |         | |
- | |_) |_   _  | |__) |_ _ _ __ _____| |__  _   _| |_ ___
- |  _ <| | | | |  ___/ _` | '__|_  / | '_ \| | | | __/ _ \
- | |_) | |_| | | |  | (_| | |   / /| | |_) | |_| | ||  __/
- |____/ \__, | |_|   \__,_|_|  /___|_|_.__/ \__, |\__\___|
-         __/ |                               __/ |
-        |___/                               |___/
+<x-app-layout>
+    <x-slot name="product">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edicion de Productos') }}
+        </h2>
+    </x-slot>
 
-    Blog:       https://parzibyte.me/blog
-    Ayuda:      https://parzibyte.me/blog/contrataciones-ayuda/
-    Contacto:   https://parzibyte.me/blog/contacto/
-
-    Copyright (c) 2020 Luis Cabrera Benito
-    Licenciado bajo la licencia MIT
-
-    El texto de arriba debe ser incluido en cualquier redistribucion
---}}
-@extends("maestra")
-@section("titulo", "Editar producto")
-@section("contenido")
-    <div class="row">
-        <div class="col-12">
-            <h1>Editar producto</h1>
-            <form method="POST" action="{{route("productos.update", [$producto])}}">
-                @method("PUT")
-                @csrf
-                <div class="form-group">
-                    <label class="label">Código de barras</label>
-                    <input required value="{{$producto->codigo_barras}}" autocomplete="off" name="codigo_barras"
-                           class="form-control"
-                           type="text" placeholder="Código de barras">
-                </div>
-                <div class="form-group">
-                    <label class="label">Descripción</label>
-                    <input required value="{{$producto->descripcion}}" autocomplete="off" name="descripcion"
-                           class="form-control"
-                           type="text" placeholder="Descripción">
-                </div>
-                <div class="form-group">
-                    <label class="label">Precio de compra</label>
-                    <input required value="{{$producto->precio_compra}}" autocomplete="off" name="precio_compra"
-                           class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de compra">
-                </div>
-                <div class="form-group">
-                    <label class="label">Precio de venta</label>
-                    <input required value="{{$producto->precio_venta}}" autocomplete="off" name="precio_venta"
-                           class="form-control"
-                           type="decimal(9,2)" placeholder="Precio de venta">
-                </div>
-                <div class="form-group">
-                    <label class="label">Existencia</label>
-                    <input required value="{{$producto->existencia}}" autocomplete="off" name="existencia"
-                           class="form-control"
-                           type="decimal(9,2)" placeholder="Existencia">
-                </div>
-
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 @include("notificacion")
-                <button class="btn btn-success">Guardar</button>
-                <a class="btn btn-primary" href="{{route("productos.index")}}">Volver</a>
-            </form>
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="POST" action="{{route("productos.update", [$producto])}}">
+                                @method("PUT")
+                                @csrf
+                                <div class="form-group">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Código de barras </label>
+                                    <input required value="{{$producto->codigo_barras}}" autocomplete="off"
+                                        name="codigo_barras" class="text-md block px-3 py-2 rounded-lg bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md 
+                                                                    focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none" type="text"
+                                        placeholder="Código de barras"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
+                                    <input required value="{{$producto->descripcion}}" autocomplete="off"
+                                        name="descripcion" class="text-md block px-3 py-2 rounded-lg bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md 
+                                                                    focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none" type="text" placeholder="Descripción">
+                                </div>
+                                <div class="form-group">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio de compra</label>
+                                    <input required value="{{$producto->precio_compra}}" autocomplete="off"
+                                        name="precio_compra" class="text-md block px-3 py-2 rounded-lg bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md 
+                                                                    focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"  type="decimal(9,2)"
+                                        placeholder="Precio de compra">
+                                </div>
+                                <div class="form-group">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio de venta</label>
+                                    <input required value="{{$producto->precio_venta}}" autocomplete="off"
+                                        name="precio_venta" class="text-md block px-3 py-2 rounded-lg bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md 
+                                                                    focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"  type="decimal(9,2)"
+                                        placeholder="Precio de venta">
+                                </div>
+                                <div class="form-group">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Existencia</label>
+                                    <input required value="{{$producto->existencia}}" autocomplete="off"
+                                        name="existencia" class="text-md block px-3 py-2 rounded-lg bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md 
+                                                                    focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"  type="decimal(9,2)"
+                                        placeholder="Existencia">
+                                </div>
+                                <br>
+                                @include("notificacion")
+                                <button class="px-3 py-2 bg-blue-500 hover:bg-blue-700 rounded-lg text-white text-xs font-bold hover:no-underline">Guardar</button>
+                                <a class="px-3 py-2 bg-green-500 hover:bg-green-700 rounded-lg text-white text-xs font-bold hover:no-underline" href="{{route("productos.index")}}">Volver</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-@endsection
+</x-app-layout>

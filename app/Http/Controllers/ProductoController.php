@@ -19,7 +19,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return view("productos.productos_catalogo", ["productos" => Producto::all()]);
+        return view("productos.productos_index", ["productos" => Producto::all()]);
     } 
 
     public function create()
